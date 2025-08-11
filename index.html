@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ChemBlast - Ionenladungen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HTML-Struktur für Startbildschirm, Spiel-UI und Nachrichten-Overlay -->
+    <div id="starryBackground" class="hidden"></div>
+
+    <div id="modeSelectionScreen" class="hidden">
+        <h1>ChemBlast</h1>
+        <button id="btnStartGame" class="start-button">START GAME</button>
+        <div class="highscore-container">
+            <div class="highscore-section">
+                <h3>Tagesbestenliste</h3>
+                <ul id="dailyHighscoreList" class="highscore-list">
+                    <li>Lade...</li>
+                </ul>
+            </div>
+            <div class="highscore-section">
+                <h3>Allzeit-Bestenliste</h3>
+                <ul id="alltimeHighscoreList" class="highscore-list">
+                    <li>Lade...</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameUI" class="hidden">
+        <div id="canvasContainer" class="game-container">
+            <div class="ui-container">
+                <div id="score" class="ui-element">SCORE: 0</div>
+                <div id="lives" class="ui-element">LIVES: 3</div>
+                <div id="elementDisplayContainer" class="ui-element">ELEMENT: <span id="currentElementName">--</span></div>
+                <div id="roundDisplay" class="ui-element">RUNDE: 1</div>
+            </div>
+            <canvas id="gameCanvas"></canvas>
+        </div>
+        <div class="touch-controls" id="touchControlsContainer">
+            <div class="touch-group-left">
+                <button id="touchLeft" class="touch-button">⟲</button>
+                <button id="touchRight" class="touch-button">⟳</button>
+            </div>
+            <div class="touch-group-right">
+                <button id="touchThrust" class="touch-button">⇪</button>
+                <button id="touchFire" class="touch-button">F</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="messageOverlay">
+        <p id="messageText"></p>
+        <button id="restartButton" class="restart-button">NEUSTART</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

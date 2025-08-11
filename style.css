@@ -1,0 +1,299 @@
+/* --- Grundlegende Stile & DSGVO-konforme Schriftart --- */
+body {
+    font-family: 'Courier New', Courier, monospace; /* Ersatz für Google Font */
+    background-color: #000000; /* Wird durch den Sternenhintergrund überdeckt, aber als Fallback gut */
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    touch-action: manipulation;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Sternenhintergrund --- */
+#starryBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    z-index: -1; /* Stellt sicher, dass es hinter allem anderen ist */
+    overflow: hidden; /* Verhindert Scrollbalken durch Sterne außerhalb */
+}
+
+.star { /* Für den HTML-Sternenhintergrund */
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+
+/* --- Startbildschirm und Highscore-Styling --- */
+#modeSelectionScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+#modeSelectionScreen h1 {
+    font-size: 3em;
+    color: #00FFFF;
+    text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 20px #00FFFF, 0 0 40px #FF00FF, 0 0 70px #FF00FF;
+    margin-bottom: 30px;
+}
+
+.start-button {
+    font-family: 'Courier New', Courier, monospace; /* Ersatz für Google Font */
+    background-color: #FF00FF;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    padding: 15px 30px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.5em;
+    text-shadow: 0 0 5px #FFFFFF;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.start-button:hover {
+    background-color: #CC00CC;
+    transform: scale(1.05);
+}
+
+.highscore-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    gap: 20px;
+}
+
+.highscore-section {
+    background-color: rgba(0, 255, 255, 0.05);
+    border: 1px solid #00FFFF;
+    border-radius: 8px;
+    padding: 15px;
+    width: 45%;
+    box-shadow: 0 0 10px #00FFFF, inset 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.highscore-section h3 {
+    font-size: 1.2em;
+    color: #FF00FF;
+    margin-bottom: 10px;
+    text-shadow: 0 0 3px #FF00FF;
+    word-break: break-word;
+}
+
+.highscore-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 150px; /* Höhe angepasst für 6 Einträge */
+    overflow-y: auto;
+}
+ .highscore-list::-webkit-scrollbar {
+    width: 8px;
+}
+.highscore-list::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.3);
+    border-radius: 4px;
+}
+.highscore-list::-webkit-scrollbar-thumb {
+    background-color: #FF00FF;
+    border-radius: 4px;
+    border: 2px solid #000000;
+}
+.highscore-list::-webkit-scrollbar-thumb:hover {
+    background-color: #CC00CC;
+}
+
+
+.highscore-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(0, 255, 255, 0.3);
+    font-size: 0.9em;
+}
+.highscore-list li:last-child {
+    border-bottom: none;
+}
+.highscore-list .player-name {
+    color: #FFFFFF;
+    text-align: left;
+    flex-grow: 1;
+}
+.highscore-list .player-score {
+    color: #00FF00;
+    font-weight: bold;
+    text-align: right;
+}
+
+/* --- Spiel-UI --- */
+#gameUI {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+#canvasContainer {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 10px;
+}
+
+#gameCanvas {
+    background-color: #000000; /* Hintergrund des Canvas selbst */
+    border: 2px solid #FFFFFF;
+    border-radius: 8px;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.ui-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 10px 0;
+    font-size: 14px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    flex-wrap: wrap;
+}
+.ui-element {
+    padding: 5px 10px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    margin: 2px 5px;
+    white-space: nowrap;
+}
+#elementDisplayContainer {
+    font-weight: bold;
+}
+#messageOverlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFFFFF;
+    font-size: 36px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.7);
+    padding: 30px;
+    border-radius: 10px;
+    z-index: 20;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+}
+#messageOverlay .restart-button {
+    font-family: 'Courier New', Courier, monospace; /* Ersatz für Google Font */
+    background-color: #555;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 15px 30px;
+    margin-top: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+#messageOverlay .restart-button:hover {
+    background-color: #777;
+}
+
+/* --- Touch-Steuerung --- */
+.touch-controls {
+    display: none;
+    padding: 15px 10px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 30;
+    margin-top: 10px;
+}
+
+.touch-group-left, .touch-group-right {
+    display: flex;
+    gap: 20px;
+}
+
+.touch-button {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    font-size: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 0 5px rgba(255,255,255,0.3);
+    transition: background-color 0.1s, transform 0.1s;
+}
+.touch-button:active {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(0.95);
+}
+
+/* --- Media Queries für Responsive Design --- */
+@media (max-width: 600px) {
+    #modeSelectionScreen h1 { font-size: 2em; }
+    .start-button { font-size: 1.2em; padding: 10px 20px; }
+    .highscore-container { flex-direction: column; gap: 15px; }
+    .highscore-section { width: 90%; margin: 0 auto; }
+    .highscore-section h3 { font-size: 1.1em; }
+    .highscore-list li { font-size: 0.8em; }
+    .ui-container { font-size: 10px; padding: 5px 0; }
+    .ui-element { padding: 3px 6px; margin: 1px 3px; }
+    #messageOverlay { font-size: 24px; padding: 20px; }
+    #messageOverlay .restart-button { font-size: 16px; padding: 10px 20px; }
+    .touch-button { width: 70px; height: 70px; font-size: 45px; }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .touch-controls { display: flex; }
+}
